@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+
+<script type="text/javascript">
+	function IdLimit() {
+		document.getElementById('id').value = document
+				.getElementById('id').value.replace(
+				/[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/g, '');
+		// 특수문자 제한
+		document.getElementById('id').value = document
+				.getElementById('id').value.trim();
+		// 공백문자 제한
+		document.getElementById('id').value = document
+				.getElementById('id').value
+				.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '');
+		// 한글 제한
+	}
+
+	function idCheck() {
+		if (document.getElementById("id").value == "") {
+			alert("아이디를 입력하여 주세요");
+		} else {
+			var form = document.form_name;
+			form.action = "select.jsp";
+			form.submit();
+		}
+
+	}
+</script>
+<body>
+	<h1>상품정보 검색</h1>
+	<form name="form_name">
+		아이디 검색 : <input type="text" name="id" id="id" oninput="IdLimit()">
+	</form>
+	<input type="submit" value="검색하기" onclick="idCheck()">
+</body>
+</html>

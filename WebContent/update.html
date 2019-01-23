@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+   href="/myShop/css/page.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+function IdLimit() {
+	 document.getElementById('update_id').value = document.getElementById('update_id').value.replace( /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/g,'');
+    // 특수문자 제한
+    document.getElementById('update_id').value = document.getElementById('update_id').value.trim();
+    // 공백문자 제한
+     document.getElementById('update_id').value = document.getElementById('update_id').value.replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');
+    // 한글 제한
+}
+
+function idSearch() {//아이디 검색할때 빈칸 유효성 검사
+	if (document.getElementById("update_id") == "") {
+		alert("아이디를 입력해주세요");
+	}else{
+		var form = document.searchForm;
+		form.action = "update.jsp";
+		form.submit();
+	}
+}
+
+
+</script>
+<body>
+
+<section class = "update_section">
+<h1>회원정보 수정</h1><br><br>
+<h3>수정할 아이디 검색</h3>
+<form name = "searchForm">
+회원 아이디 : <input type="text" name = "id" id = "update_id" oninput="IdLimit()" style="width: 150px;"  >
+</form>
+<input type="submit" value = "검색" style="width: 50px;" onclick="idSearch()"><br><br><br>
+
+
+</section>
+</body>
+</html>

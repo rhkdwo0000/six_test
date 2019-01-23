@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+   href="/myShop/css/page.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+function IdLimit() {
+	 document.getElementById('delete_id').value = document.getElementById('delete_id').value.replace( /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/g,'');
+     // 특수문자 제한
+     document.getElementById('delete_id').value = document.getElementById('delete_id').value.trim();
+     // 공백문자 제한
+      document.getElementById('delete_id').value = document.getElementById('delete_id').value.replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');
+     // 한글 제한
+}
+
+function idCheck() {
+	if(document.getElementById("delete_id").value == ""){
+		alert("아이디를 입력하여 주세요 ");
+	}else{
+		var form_id = document.delete_name;
+		form_id.action = "delete.jsp";
+		form_id.submit();
+	}
+	
+}
+
+</script>
+
+<body>
+<form class ="delete_form" name = "delete_name" method="post">
+<h1>상품 삭제하기</h1>
+	<table border="1" class = "delete_table">
+		<tr height="30px">
+			<td width="150px">삭제할 아이디</td>
+			<td width="250px">
+				<input type="text" name = "id" id = "delete_id" oninput="IdLimit()">
+			</td>
+		</tr>
+		</table>
+</form>
+	<input style="width: 100px; height: 30px;" type="submit" value="상품삭제" onclick="idCheck()">
+</body>
+</html>

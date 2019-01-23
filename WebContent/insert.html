@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+   href="/myShop/css/page.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+
+
+function IdLimit() {//아이디 유효성   
+    document.getElementById('id').value = document.getElementById('id').value.replace( /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/g,'');
+      // 특수문자 제한
+      document.getElementById('id').value = document.getElementById('id').value.trim();
+      // 공백문자 제한
+       document.getElementById('id').value = document.getElementById('id').value.replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');
+      // 한글 제한
+}
+
+
+
+function priceLimit() {//가격 유효성   
+   	 document.getElementById('price').value = document.getElementById('price').value.replace( /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/g,'');
+      // 특수문자 제한
+      document.getElementById('price').value = document.getElementById('price').value.trim();
+      // 공백문자 제한
+       document.getElementById('price').value = document.getElementById('price').value.replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');
+      // 한글 제한
+       document.getElementById('price').value = document.getElementById('price').value.replace( /[A-Za-z]/g, "");
+       // 영어입력 제한
+}
+
+
+function joinCheck() {//입력란이 빈칸일때 경고메시지를 띄워주는 함수
+	 
+	
+	if (document.getElementById("id").value == "") {
+		alert("아이디를 입력해주세요 ")
+	}else if(document.getElementById("name").value == ""){
+		alert("상품이름을 입력해주세요 ")
+	}else if(document.getElementById("explain").value == ""){
+		alert("상품설명을 입력해주세요 ")
+	}else if(document.getElementById("price").value == ""){
+		alert("가격을 입력해주세요 ")
+	}else{
+		var form = document.form_name;
+		form.action = "insert.jsp";
+		form.submit();
+	}
+	
+}
+
+</script>
+
+<body>
+<form class ="insert_form" method="post" name = "form_name">
+<h1>상품등록 페이지</h1>
+	<table border="1" class = "insert_table">
+		<tr height="30px">
+			<td width="100px">아이디</td>
+			<td width="250px">
+				<input type="text" name = "id" id = "id" oninput="IdLimit()">
+			</td>
+		</tr>
+		<tr height="30px">
+			<td>상품이름</td>
+			<td>
+				<input type="text" name = "name" id = "name">
+			</td>
+		</tr>
+		<tr height="30px">
+			<td>상품설명</td>
+			<td height="100px">
+				<textarea name = "explain" id = "explain"></textarea>
+			</td>
+		</tr>
+		<tr style="border" height="30px">
+			<td>상품가격</td>
+			<td>
+				<input type="text" name = "price" id ="price" oninput="priceLimit()">
+			</td>
+		</tr>
+	</table>
+</form>
+	<input style="width: 100px; height: 30px; " type="submit" value="상품등록" onclick="joinCheck()">
+</body>
+</html>
